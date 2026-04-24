@@ -14,8 +14,7 @@ export default function MyApp() {
     <div>
       <h1>Welcome to my app</h1>
       <MyButton />
-      <AboutPage />
-      <Profile />
+      <One />
     </div>
   );
 }
@@ -72,4 +71,16 @@ const user = {
   );
 }
 
+const isLoggedIn = true;
+function One() {
+  return (
+    <div>
+      {isLoggedIn ? (
+        <AboutPage />
+      ) : (
+        <Profile />
+      )}
+    </div>
+  )
+}
 
