@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
+import TictactoGame from './TictactoGame';
 
 
 // function MyButton() {
@@ -18,9 +19,14 @@ import { useState } from 'react';
 
 export default function MyApp() {
   const [count, setCount] = useState(0);
+  const [showGame, setShowGame] = useState(false);
 
   function handleClick() {
     setCount(count + 1);
+  }
+
+  function handleGoToGame() {
+    setShowGame(true);
   }
 
   return (
@@ -30,17 +36,33 @@ export default function MyApp() {
       <MyButton count={count} onClick={handleClick} />
       <One />
       <ShoppingList />
-      <MyButton2 />
+      {showGame ? (
+        <TictactoGame />
+      ) : (
+        <MyButton2 onClick={handleGoToGame} />
+      )}
     </div>
   );
 
   function MyButton({ count, onClick }) {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
-}
+    return (
+      <button onClick={onClick}>
+        Clicked {count} times
+      </button>
+    );
+  }
+  function MyButton2({ onClick }) {
+    const handleInternalClick = () => {
+      alert('게임 시작!');
+      onClick();
+    };
+
+    return (
+      <button onClick={handleInternalClick}>
+        TictactoGame 시작하기
+      </button>
+    );
+  }
 }
 
 function AboutPage() {
@@ -132,14 +154,15 @@ function ShoppingList() {
   );
 }
 
-function MyButton2() {
-  function handleClick() {
-    alert('You Clicked me!');
-  }
+// function MyButton2() {
+//   function handleClick() {
+//     alert('You Clicked me!');
+//   }
 
-  return (
-    <button onClick={handleClick}>
-      Click me
-    </button>
-  );
-}
+//   return (
+//     <button onClick={handleClick}>
+//       Click me
+//     </button>
+//   );
+// }
+
