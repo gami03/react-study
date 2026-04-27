@@ -54,3 +54,9 @@
 .game-info ol {
   padding-left: 30px;
 }
+
+.square.highlight {
+  background-color: #fff9c4; /* 연한 노란색 */
+  color: #f57f17;            /* 진한 주황색 글자 */
+  border: 2px solid #fbc02d; /* 강조된 테두리 */
+}
