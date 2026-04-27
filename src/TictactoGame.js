@@ -62,6 +62,8 @@ export default function Game() {
     const [history, setHistory] = useState([Array(9).fill(null)]);
     const [currentMove, setCurrentMove] = useState(0);
     const currentSquares = history[currentMove];
+    const [isSorting, setIsSorting] = useState(true);
+
 
     function handlePlay(nextSquares) {
       const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
@@ -92,6 +94,10 @@ export default function Game() {
         </li>
         );
     });
+
+    if(!isSorting) {
+      moves.reverse();
+    }
     
     return(
         <div className='game'>
@@ -99,6 +105,9 @@ export default function Game() {
                 <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
             </div>
             <div className='game-info'>
+              <button onClick={() => setIsSorting(!isSorting)}>
+                {isSorting ? '내림차순 정렬' : '오름차순 정렬'}
+              </button>
                 <ol>{moves}</ol>
             </div>
         </div>
