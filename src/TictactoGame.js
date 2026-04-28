@@ -22,7 +22,7 @@ function Board({ xIsNext, squares, onPlay }) {
     } else {
       nextSquares[i] = 'O';
     }
-    onPlay(nextSquares);
+    onPlay(nextSquares, i);
   }
   const result = calculateWinner(squares);
   const winner = result?.winner;
@@ -70,14 +70,14 @@ return (
 
 export default function Game() {
     const [xIsNext, setXIsNext] = useState(true);
-    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const [history, setHistory] = useState([{ squares: Array(9).fill(null), lastIndex: null }]);
     const [currentMove, setCurrentMove] = useState(0);
-    const currentSquares = history[currentMove];
+    const currentSquares = history[currentMove].squares;
     const [isSorting, setIsSorting] = useState(true);
 
 
-    function handlePlay(nextSquares) {
-      const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    function handlePlay(nextSquares, index) {
+      const nextHistory = [...history.slice(0, currentMove + 1), { squares: nextSquares, lastIndex: index }];
         setHistory(nextHistory);
         setCurrentMove(nextHistory.length - 1);
         setXIsNext(!xIsNext);
@@ -88,11 +88,13 @@ export default function Game() {
       setXIsNext(nextMove % 2 === 0);
     }
 
-    const moves = history.map((squares, move) => {
+    const moves = history.map((step, move) => {
         let description;
         if (move > 0) {
             //description = 'Go to move #' + move;
-            description = '#' + move + "번째 순서에 있습니다.";
+            const col = (step.lastIndex % 3) + 1;
+            const row = Math.floor(step.lastIndex / 3) + 1;
+            description = `#${move}번째 순서에 있습니다. (${col}, ${row})`;
         }
         else {
             description = 'Go to game start';
