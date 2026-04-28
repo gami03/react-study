@@ -1,7 +1,8 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
-import TictactoGame from './TictactoGame';
+import { BrowserRouter, Routes, Route, Link, useNavigate } from 'react-router-dom';
+import TictactoGame from './pages/TictactoGame';
+import Componenet from './pages/component';
 
 
 // function MyButton() {
@@ -17,53 +18,64 @@ import TictactoGame from './TictactoGame';
 //   );
 // }
 
-export default function MyApp() {
-  const [count, setCount] = useState(0);
-  const [showGame, setShowGame] = useState(false);
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="App">
+        <nav style={{ padding: '20px', borderBottom: '1px solid #ccc' }}>
+          <Link to="/" style={{ marginRight: '10px' }}>홈</Link>
+          <Link to="/game" style={{ marginRight: '10px' }}>틱택토</Link>
+          <Link to="/about" style={{ marginRight: '10px' }}>내 정보</Link>
+          <Link to="/component">컴포넌트</Link>
+        </nav>
 
-  function handleClick() {
-    setCount(count + 1);
-  }
+        {/* 경로에 따라 바뀌는 영역 */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/game" element={<TictactoGame />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/component" element={<Componenet />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  );
+}
 
-  function handleGoToGame() {
-    setShowGame(true);
-  }
+// 홈 화면 컴포넌트
+function Home() {
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <h1>Welcome to my app</h1>
-      <MyButton count={count} onClick={handleClick} />
-      <MyButton count={count} onClick={handleClick} />
-      <One />
-      <ShoppingList />
-      {showGame ? (
-        <TictactoGame />
-      ) : (
-        <MyButton2 onClick={handleGoToGame} />
-      )}
-    </div>
+    <header className="App-header">
+      <h1>보감님의 리액트 연습장</h1>
+      <p>원하는 메뉴를 선택하세요.</p>
+      <button onClick={() => navigate('/game')}>틱택토 하러 가기</button>
+      <button onClick={() => navigate('/about')} style={{ marginLeft: '10px' }}>정보 보기</button>
+      <button onClick={() => navigate('/component')}>컴포넌트</button>
+    </header>
   );
-
-  function MyButton({ count, onClick }) {
-    return (
-      <button onClick={onClick}>
-        Clicked {count} times
-      </button>
-    );
-  }
-  function MyButton2({ onClick }) {
-    const handleInternalClick = () => {
-      alert('게임 시작!');
-      onClick();
-    };
-
-    return (
-      <button onClick={handleInternalClick}>
-        TictactoGame 시작하기
-      </button>
-    );
-  }
 }
+
+  // function MyButton({ count, onClick }) {
+  //   return (
+  //     <button onClick={onClick}>
+  //       Clicked {count} times
+  //     </button>
+  //   );
+  // }
+  // function MyButton2({ onClick }) {
+  //   const handleInternalClick = () => {
+  //     alert('게임 시작!');
+  //     onClick();
+  //   };
+
+  //   return (
+  //     <button onClick={handleInternalClick}>
+  //       TictactoGame 시작하기
+  //     </button>
+  //   );
+  // }
+
 
 function AboutPage() {
   const imageUrl = "https://images.dog.ceo/breeds/retriever-golden/n02099601_10.jpg";
