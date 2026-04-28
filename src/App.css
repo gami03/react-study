@@ -41,10 +41,8 @@
   border-radius: 80%;
 }
 
-.game-container {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;
-  justify-content: center;
-  padding: 50px; 
+table {
+  /* 상하 마진은 0(혹은 원하는 만큼), 좌우 마진은 auto */
+  margin: 20px auto; 
+  border-collapse: collapse; /* 테두리 겹침 방지 (깔끔해져요) */
 }

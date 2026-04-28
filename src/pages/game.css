@@ -4,6 +4,15 @@
   flex-direction: row;
   gap: 20px;
   align-items: flex-start;
+  margin: 0 auto;
+}
+
+/* 전용 래퍼만 중앙 정렬 */
+.game-center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
 }
 
 /* 상태 메시지 (Next player, Winner) */
@@ -60,3 +69,4 @@
   color: #f57f17;            /* 진한 주황색 글자 */
   border: 2px solid #fbc02d; /* 강조된 테두리 */
 }
+
