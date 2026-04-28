@@ -50,7 +50,7 @@ function Home() {
       <h1>보감님의 리액트 연습장</h1>
       <p>원하는 메뉴를 선택하세요.</p>
       <button onClick={() => navigate('/game')}>틱택토 하러 가기</button>
-      <button onClick={() => navigate('/about')} style={{ marginLeft: '10px' }}>정보 보기</button>
+      <button onClick={() => navigate('/about')}>정보 보기</button>
       <button onClick={() => navigate('/component')}>컴포넌트</button>
     </header>
   );

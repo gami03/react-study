@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh; /* 화면의 80% 정도 높이를 기준으로 중앙 정렬 */
+  padding: 20px;
+}
+
+.wrapper {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* 예쁜 그림자 */
+  width: 100%;
+  max-width: 500px;
+}
+
+.wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.wrapper th, .wrapper td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}

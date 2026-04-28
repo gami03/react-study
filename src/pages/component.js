@@ -1,3 +1,5 @@
+import styles from './component.module.css';
+
 function ProductCategoryRow({ category }) {
   return (
     <tr>
@@ -70,9 +72,11 @@ function SearchBar() {
 
 function FilterableProductTable({ products }) {
   return (
-    <div>
-      <SearchBar />
-      <ProductTable products={products} />
+    <div className={styles.container}>
+      <div className={styles.wrapper}>
+        <SearchBar />
+        <ProductTable products={products} />
+      </div>
     </div>
   );
 }
