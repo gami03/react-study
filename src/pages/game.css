@@ -1,72 +1,98 @@
-/* 전체 게임 레이아웃 */
-.game {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-  align-items: flex-start;
-  margin: 0 auto;
-}
-
 /* 전용 래퍼만 중앙 정렬 */
 .game-center-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 50vh;
+  min-height: calc(100vh - 65px);
+  padding: 40px 20px;
+}
+
+/* 전체 게임 레이아웃 */
+.game {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  align-items: flex-start;
+  background: var(--color-surface);
+  padding: 36px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
 }
 
 /* 상태 메시지 (Next player, Winner) */
 .status {
-  margin-bottom: 10px;
-  font-weight: bold;
+  margin-bottom: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-primary-dark);
 }
 
 /* 보드 행 설정 */
 .board-row {
-  display: flex; /* 자식 요소들을 가로로 정렬 */
+  display: flex;
 }
 
 /* 개별 사각형 버튼 스타일 */
 .square {
-  background: #fff;
-  border: 1px solid #999;
-  float: left; /* 또는 flex를 사용하므로 생략 가능 */
-  font-size: 24px;
-  font-weight: bold;
-  line-height: 34px;
-  height: 34px; /* 고정 높이 */
-  width: 34px;  /* 고정 너비 */
-  margin-right: -1px;
-  margin-top: -1px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  font-size: 26px;
+  font-weight: 700;
+  height: 56px;
+  width: 56px;
+  margin-right: 6px;
+  margin-top: 6px;
   padding: 0;
-  text-align: center;
-  
-  /* 위치 고정의 핵심: 버튼 내부 텍스트 위치 잡기 */
+  border-radius: var(--radius-sm);
+  color: var(--color-primary-dark);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  
-  /* 클릭 시 테두리 강조 제거 (선택사항) */
+
   outline: none;
   cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
 }
 
 .square:hover {
-  background-color: #f0f0f0;
+  background-color: rgba(108, 92, 231, 0.12);
+  transform: translateY(-1px);
 }
 
 /* 게임 정보 (기록 목록) */
 .game-info {
-  margin-left: 20px;
+  min-width: 220px;
+}
+
+.game-info button {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary-light);
+  background: #fff;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.game-info button:hover {
+  background: var(--color-primary);
+  color: #fff;
 }
 
 .game-info ol {
-  padding-left: 30px;
+  margin: 16px 0 0;
+  padding-left: 22px;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.9;
 }
 
 .square.highlight {
-  background-color: #fff9c4; /* 연한 노란색 */
-  color: #f57f17;            /* 진한 주황색 글자 */
-  border: 2px solid #fbc02d; /* 강조된 테두리 */
+  background-color: #fff3b0;
+  color: #b8860b;
+  border: 2px solid #f5c518;
 }
-
